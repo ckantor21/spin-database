@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<div class="row">
+    <div class="col-md-5">
+        <h2 class="sub=header">Top 10 Artists</h2>
+        <table class="table" id="top10_artists">
+            <thead>
+                <tr>
+                    <th class="text-start">#</th>
+                    <th class="text-start">Artist</th>
+                    <th class="text-end">Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for artist in top10_artists %}
+                <tr>
+                    <td class="text-start">{{ artist['ranking'] }}</td>
+                    <td class="text-start">{{ artist['name'] }}</td>
+                    <td class="text-end">{{ artist['count'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody> 
+        </table>
+    </div>
+
+    <div class="col-md-2">
+
+    </div>
+
+    <div class="col-md-5">
+        <h2 class="sub=header">Ten Most Recent Playlists</h2>
+        <table class="table" id="ten_recent">
+            <thead>
+                <tr>
+                    <th class="text-start">Date</th>
+                    <th class="text-start">Name</th>
+                    <th class="text-end">Length</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for playlist in ten_recent %}
+                <tr>
+                    <td class="text-start">{{ playlist['date'] }}</td>
+                    <td class="text-start">{{ playlist['name'] }}</td>
+                    <td class="text-end">{{ playlist['length'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody> 
+        </table>
+    </div>
+</div>
+
+{% endblock %}

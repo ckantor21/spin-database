@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+<input type="text" id="song" onkeyup="table_search()" placeholder="Search for a song: ">
+
+<table class="table" id="playlists">
+    <thead>
+        <tr>
+            <th class="text-start">Date</th>
+            <th class="text-start">Name</th>
+            <th class="text-end">Tracks</th>
+            <th class="text-end">Length</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for playlist in all_playlists %}
+        <tr>
+            <td class="text-start">{{ playlist["date"] }}</td>
+            <td class="text-start">{{ playlist["name"] }}</td>
+            <td class="text-end">{{ playlist["tracks"] }}</td>
+            <td class="text-end">{{ playlist["length"] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    function table_search() {
+        //Declare variables
+
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("song");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("playlists");
+        tr = table.getElementsByTagName("tr");
+
+        //Loop through table rows, and hide those that don't match search query
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+{% endblock %}
